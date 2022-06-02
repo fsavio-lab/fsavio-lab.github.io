@@ -1,0 +1,29 @@
+.card{
+    background-color:var(--kombu-green);
+    padding:1em 2em 2em 2em; 
+    border-radius: 20px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    min-height: 150px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card > * { 
+    margin: 0;
+}
+
+.card > h1 {
+    color:var(--medium-champagne);
+    font-size:2rem;
+    
+}
+
+.card > h3{
+    color:var(--gamboge);
+    margin-block: 4px 8px; 
+
+}
+
+.card > p{
+    color:white;
+    font-weight: 300;
+}

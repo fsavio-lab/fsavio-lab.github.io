@@ -1,0 +1,15 @@
+.footer{
+    background-color: black;
+    padding: 1.5em 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer > h3{
+    margin: 0;
+    color:aliceblue;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 1.1rem;
+}
