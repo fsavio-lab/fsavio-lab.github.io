@@ -10,6 +10,7 @@
   --primary-color: #8f88d6;
   --secondary-color: #282828;
   --tertiary-color: #1e0053;
+  --quaternary-color: #0f0c2b;
 
   --border-radius: 16px;
   --small-border-radius: 8px;
@@ -26,6 +27,7 @@ body {
 }
 
 .container {
+  /* background-color: var(--black); */
 }
 
 .header-section {
@@ -34,6 +36,8 @@ body {
   position: relative;
   width: 100%;
   height: 768px;
+  background: linear-gradient(to bottom, var(--black),var(--tertiary-color),var(--quaternary-color),var(--black));
+  z-index: -1;
 }
 
 .header-section > #background-image {
