@@ -134,7 +134,7 @@ h2.tagline{
      }
 
     .card{
-        background: rgba(255,255,255,0.8);
+        background: rgba(255,255,255,0.9);
         min-width: unset;
         /* max-width: 100%; */
         min-height: 400px;
