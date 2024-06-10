@@ -42,9 +42,28 @@ body {
     "A  D  D"
  }
 
-h1.title{
-    
+h1, h2, h3, h4{
     font-family: var(--bebas-neue), "sans-serif";
+}
+
+.logo{
+    width: 80%;
+    height: auto;
+    padding-bottom: 1.5rem;
+    align-self: center;
+
+}
+
+span.title{
+    font-family: var(--playfair-display);
+    font-weight: 500;
+    font-size: large;
+    padding-inline: 0.3rem;
+    color: var(--white);
+    background-color: var(--black) ;
+}
+
+h1.title{
     font-size: 5rem;
     line-height: 5.5rem;
     font-weight: 400;
@@ -94,6 +113,8 @@ h2.tagline{
 
 #headline{
     grid-area: A;
+    display: flex;
+    flex-direction: column;
 }
 #social{
     grid-area: B
@@ -146,8 +167,21 @@ h2.tagline{
         height: fit-content;
         aspect-ratio: unset;
         border-radius: 2rem;
-        padding: 32px;
+        padding: 1.5rem;
         margin-bottom: 1rem;
         box-shadow: 0px 0px 16px #a5a5a5;
+    }
+
+    h2.tagline{
+        font-size: large;
+    }
+    .tagline:hover{
+        color: var(--white)
+    }
+
+    h1.title{
+        font-size: 4rem;
+        line-height: 4.5rem;
+        font-weight: 400;
     }
 }
