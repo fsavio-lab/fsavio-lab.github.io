@@ -126,11 +126,25 @@ h2.tagline{
 
 
 #blog{
-    grid-area: D 
+    grid-area: D;
+    display:flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.line{
+    border-left: 2px solid var(--black);
+    height: 90%;
+    
+    margin-inline: 2rem;
+}
+
+.blog-text{
+    max-width: 250px;
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1024px) {
     body {
         min-height: 100vh;
         max-height: 100%;
@@ -160,10 +174,10 @@ h2.tagline{
     .card{
         background: rgba(255,255,255,0.75);
         min-width: unset;
-        /* max-width: 100%; */
+        /* max-width: 240px; */
         min-height: 400px;
-        /* max-height:100%;
-        width: 100vw; */
+        max-height:100%;
+        max-width: 100%;
         height: fit-content;
         aspect-ratio: unset;
         border-radius: 2rem;
@@ -183,5 +197,31 @@ h2.tagline{
         font-size: 4rem;
         line-height: 4.5rem;
         font-weight: 400;
+    }
+
+    .logo{
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+    }
+
+    #blog{
+        grid-area: D;
+        display:flex;
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        flex-direction: column;
+        
+    }
+    
+    .line{
+        border-left: 2px solid var(--black);
+        height: 90%;
+        
+        margin-inline: 2rem;
+    }
+    
+    .blog-text{
+        max-width: 100%;
     }
 }
