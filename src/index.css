@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 6%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 6%;
+
+    --radius: 0.25rem;
+
+    /* Portfolio tokens */
+    --racing-red: 0 85% 46%;
+    --racing-red-glow: 0 90% 55%;
+    --silver: 0 0% 75%;
+    --silver-light: 0 0% 85%;
+    --silver-dark: 0 0% 60%;
+    --off-white: 0 0% 97%;
+    --deep-black: 0 0% 4%;
+    --grey-900: 0 0% 10%;
+    --grey-800: 0 0% 15%;
+    --grey-700: 0 0% 25%;
+    --grey-600: 0 0% 35%;
+    --grey-400: 0 0% 55%;
+    --grey-300: 0 0% 70%;
+    --grey-200: 0 0% 82%;
+    --grey-100: 0 0% 92%;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 100ms; }
+  .reveal-delay-2 { transition-delay: 200ms; }
+  .reveal-delay-3 { transition-delay: 300ms; }
+  .reveal-delay-4 { transition-delay: 400ms; }
+
+  /* Red underline accent */
+  .red-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .red-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--racing-red));
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .red-underline:hover::after,
+  .red-underline.active::after {
+    width: 100%;
+  }
+
+  /* Card tilt on hover */
+  .card-tilt {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .card-tilt:hover {
+    transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 0 20px 40px -12px hsl(var(--deep-black) / 0.15);
+  }
+
+  /* Silver shimmer border */
+  .shimmer-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid hsl(var(--silver) / 0.3);
+    border-radius: inherit;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+  }
+  .shimmer-border:hover::before {
+    border-color: hsl(var(--silver) / 0.7);
+  }
+
+  /* Hero text reveal */
+  .text-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .text-reveal-delay-1 { animation-delay: 0.15s; }
+  .text-reveal-delay-2 { animation-delay: 0.3s; }
+  .text-reveal-delay-3 { animation-delay: 0.45s; }
+
+  /* Counter animation */
+  .metric-bar {
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .metric-bar.active {
+    width: var(--bar-width, 80%);
+  }
+
+  /* Scroll indicator pulse */
+  .scroll-indicator {
+    animation: scrollPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(6px); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
