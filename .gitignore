@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local servers / tooling (none required, just in case)
+node_modules/
+*.log
+
+# Never commit generated banners — regenerate via banner.html
+*.png
+!docs/**/*.png

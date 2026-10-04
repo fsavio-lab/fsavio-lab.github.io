@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>SAVIO/27 — LinkedIn Banner Forge</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+ body{background:#101014;color:#ccc;font-family:'IBM Plex Mono',monospace;display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;margin:0}
+ h1{font-size:13px;letter-spacing:.25em;color:#58d68d;font-weight:600}
+ #bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+ button{font:inherit;font-size:12px;background:none;color:#eee;border:1px solid #555;padding:6px 14px;cursor:pointer;letter-spacing:.08em}
+ button.on{background:#FFFF55;color:#0000AA;border-color:#FFFF55}
+ #dl{border-color:#3fae5a;color:#3fae5a}
+ #dl:hover{background:#3fae5a;color:#000}
+ canvas{border:1px solid #333;max-width:100%;height:auto}
+ p.note{font-size:11px;color:#777;max-width:760px;text-align:center;line-height:1.7;margin:0}
+</style>
+</head>
+<body>
+<h1>LINKEDIN BANNER FORGE — 1584 × 396</h1>
+<div id="bar">
+  <button data-t="blue" class="on">IBM BLUE</button>
+  <button data-t="green">GREEN PHOSPHOR</button>
+  <button data-t="amber">AMBER</button>
+  <button id="dl">⭳ DOWNLOAD PNG</button>
+</div>
+<canvas id="cv" width="1584" height="396"></canvas>
+<p class="note">LinkedIn's banner slot is exactly 1584×396. Pick a tube, hit DOWNLOAD, upload the PNG on LinkedIn. The canvas above is the file, 1:1 — no cropping needed.</p>
+<script>
+(function(){
+'use strict';
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+const PAL={
+  blue: {bg:'#0000AA',bar:'#AAAAAA',barfg:'#0000AA',dim:'#9A9AD0',key:'#FFFF55',txt:'#FFFFFF',acc:'#FFFF55',cur:'#FFFFFF',scan:'rgba(0,0,0,.16)'},
+  green:{bg:'#020C02',bar:'#00FF66',barfg:'#020C02',dim:'#0E7A38',key:'#00FF66',txt:'#B9FFD9',acc:'#00FF66',cur:'#B9FFD9',scan:'rgba(0,0,0,.22)'},
+  amber:{bg:'#0C0800',bar:'#FFB000',barfg:'#0C0800',dim:'#9C6A10',key:'#FFB000',txt:'#FFD35C',acc:'#FFB000',cur:'#FFD35C',scan:'rgba(0,0,0,.20)'}
+};
+const LOGO=[
+'███████╗ █████╗ ██╗   ██╗██╗ ██████╗ ',
+'██╔════╝██╔══██╗██║   ██║██║██╔═══██╗',
+'███████╗███████║██║   ██║██║██║   ██║',
+'╚════██║██╔══██║╚██╗ ██╔╝██║██║   ██║',
+'███████║██║  ██║ ╚████╔╝ ██║╚██████╔╝',
+'╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝ ╚═════╝ '];
+const mono=sz=>sz+'px "IBM Plex Mono",Consolas,monospace';
+const monob=sz=>'700 '+sz+'px "IBM Plex Mono",Consolas,monospace';
+let theme='blue';
+
+function T(s,x,y,f,c,glow){
+  ctx.font=f; ctx.fillStyle=c; ctx.textBaseline='top'; ctx.textAlign='left';
+  ctx.shadowColor=c; ctx.shadowBlur=glow?7:0;
+  ctx.fillText(s,x,y); ctx.shadowBlur=0;
+}
+function render(){
+  const P=PAL[theme];
+  ctx.fillStyle=P.bg; ctx.fillRect(0,0,1584,396);
+
+  /* top status bar */
+  ctx.fillStyle=P.bar; ctx.fillRect(0,0,1584,34);
+  ctx.fillStyle=P.barfg; ctx.font=mono(13); ctx.textBaseline='middle';
+  ctx.textAlign='left';  ctx.fillText('SAVIO FERNANDO · SOFTWARE ENGINEER — PYTHON / GENERATIVE AI',14,18);
+  ctx.textAlign='right'; ctx.fillText('CRT-27 ■ PHOSPHOR PROFILE',1570,18);
+
+  /* ascii logo + roles (left column) */
+  const fs=30, lh=38, lx=26, ly=52;
+  LOGO.forEach((line,i)=>T(line,lx,ly+i*lh,monob(fs),P.acc,true));
+  T('SOFTWARE ENGINEER — PYTHON / GENERATIVE AI',lx,ly+6*lh+4,monob(15),P.txt,false);
+  T('AGENTIC AI · RAG · GRAPHRAG · LORA/QLORA · FASTAPI · AWS',lx,ly+6*lh+26,mono(13),P.dim,false);
+  const prompt='C:\\SAVIO> open_to_work --focus "python · genai"';
+  const py=ly+6*lh+54;
+  T(prompt,lx,py,monob(15),P.acc,false);
+  ctx.font=monob(15);
+  ctx.fillStyle=P.cur;
+  ctx.fillRect(lx+ctx.measureText(prompt).width+8,py-2,10,20);
+
+  /* contact box (right column) */
+  const bx=930,by=52,bw=626,bh=252;
+  ctx.strokeStyle=P.acc; ctx.lineWidth=3; ctx.strokeRect(bx,by,bw,bh);
+  ctx.lineWidth=1;       ctx.strokeRect(bx+6,by+6,bw-12,bh-12);
+  const label=' CONTACT.TXT ';
+  ctx.font=monob(12);
+  const lw=ctx.measureText(label).width;
+  ctx.fillStyle=P.bg; ctx.fillRect(bx+18,by-8,lw,16);
+  ctx.fillStyle=P.acc; ctx.textAlign='left'; ctx.textBaseline='middle';
+  ctx.fillText(label,bx+18,by+1);
+  const rows=[
+    ['NAME',     'SAVIO FERNANDO'],
+    ['EMAIL',    'fsavio27@gmail.com'],
+    ['PHONE',    '+91 9004736849'],
+    ['GITHUB',   'github.com/fsavio-lab'],
+    ['LINKEDIN', 'in/savio-fernando-2003891b5'],
+    ['PORTFOLIO','fsavio-lab.github.io']
+  ];
+  let ry=by+22;
+  rows.forEach(function(r){
+    T(r[0],bx+24,ry,monob(13),P.key,true);
+    T(r[1],bx+150,ry,mono(13),P.txt,false);
+    ry+=36;
+  });
+
+  /* bottom stack bar */
+  ctx.fillStyle=P.bar; ctx.fillRect(0,364,1584,32);
+  ctx.fillStyle=P.barfg; ctx.font=mono(12); ctx.textBaseline='middle';
+  ctx.textAlign='left';  ctx.fillText('STACK  PYTHON · FASTAPI · LANGCHAIN · LANGGRAPH · NEO4J · FALKORDB · AWS · LORA/QLORA',14,381);
+  ctx.textAlign='right'; ctx.fillText('STATUS: OPEN TO ROLES ▮',1570,381);
+
+  /* scanlines */
+  ctx.shadowBlur=0; ctx.fillStyle=P.scan; ctx.textAlign='left';
+  for(let y=0;y<396;y+=3) ctx.fillRect(0,y,1584,1);
+}
+document.querySelectorAll('#bar button[data-t]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    theme=b.dataset.t;
+    document.querySelectorAll('#bar button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
+    render();
+  });
+});
+document.getElementById('dl').addEventListener('click',()=>{
+  cv.toBlob(b=>{
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(b);
+    a.download='savio-linkedin-banner-'+theme+'-1584x396.png';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  },'image/png');
+});
+render();
+if(document.fonts&&document.fonts.ready){
+  document.fonts.load('700 30px "IBM Plex Mono"');
+  document.fonts.ready.then(render);
+  setTimeout(render,1600); /* safety re-render after font swap */
+}
+})();
+</script>
+</body>
+</html>

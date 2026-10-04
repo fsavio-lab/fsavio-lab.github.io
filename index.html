@@ -1,25 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Savio Fernando — Portfolio</title>
-    <meta name="description" content="Engineering intelligent systems at scale. AI/LLM Engineer, Systems Architect, and Performance-Driven Full Stack Developer." />
-    <meta name="author" content="Savio" />
-    <link rel="canonical" href="/" />
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="description" content="SAVIO/27 — terminal portfolio, dynamic blog and arcade subsystem running on a simulated CRT."/>
+<title>SAVIO/27 — TERMINAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="bezel">
+  <div id="screenwrap">
+    <div id="screen" data-theme="bios" data-glow="on" data-curve="on" data-flicker="on" data-wipe="on">
+      <div id="app"></div>
+      <div id="overlays"></div>
+      <div class="scan"></div>
+      <div class="fl"></div>
+      <div class="glass"></div>
+    </div>
+  </div>
+  <div class="bezel-bar">
+    <span class="brand">SAVIO<b>CRT</b>-27</span>
+    <span class="bsub">PHOSPHOR DISPLAY · MODEL 2710 · 60Hz · P27 BOOTROM</span>
+    <span class="led"></span>
+  </div>
+</div>
+<noscript style="color:#0f0;font-family:monospace;display:block;padding:2em">SAVIO/27 requires JavaScript. NO ROM FOUND.</noscript>
 
-    <meta property="og:title" content="Savio Fernando— Portfolio" />
-    <meta property="og:description" content="Engineering intelligent systems at scale. Production-grade AI, scalable architectures, performance engineering." />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Savio Fernando — Portfolio" />
-    <meta name="twitter:description" content="Engineering intelligent systems at scale." />
-    <script type="module" crossorigin src="/assets/index-BsscVjav.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CxSCQqT_.css">
-  </head>
-
-  <body>
-    <div id="root"></div>
-  </body>
+<!-- load order matters: data -> games -> app -->
+<script src="js/articles.js"></script>
+<script src="js/data.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>
